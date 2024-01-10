@@ -13,18 +13,25 @@ class MainActivity : AppCompatActivity() {
     private var gender: String = "Laki-Laki"
     private lateinit var name : EditText
     private lateinit var alamat : EditText
-
+    private lateinit var reset : Button
+    private lateinit var height : EditText
+    private lateinit var weight : EditText
+    
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         name = findViewById(R.id.editTextName)
         alamat = findViewById(R.id.editTextAddress)
-
+        reset = findViewById(R.id. buttonReset)
+        height = findViewById(R.id.editTextWeight)
+        weight = findViewById(R.id.editTextWeight)
+        
         //init widget
         val btnCalc = findViewById<Button>(R.id.buttonCalculate)
         val editTextHeight = findViewById<EditText>(R.id.editTextHeight)
         val editTextWeight = findViewById<EditText>(R.id.editTextWeight)
+        val buttonReset = findViewById<Button>(R.id.buttonReset)
         val textViewResult = findViewById<TextView>(R.id.textViewResult)
         val radioGroup = findViewById<RadioGroup>(R.id.radioGroupGender)
 
@@ -32,6 +39,14 @@ class MainActivity : AppCompatActivity() {
             val bmi = calculateBMI(editTextHeight, editTextWeight, radioGroup, textViewResult)
             textViewResult.text=bmi
         }
+        buttonReset.setOnClickListener {
+            resetBMI()
+        }
+
+    }
+    private fun resetBMI(){
+
+    }
 
     private fun calculateBMI(editTextHeight: EditText, editTextWeight: EditText, radioGroup: RadioGroup, textViewResult: TextView): String {
         val height = editTextHeight.text.toString().toDouble()
